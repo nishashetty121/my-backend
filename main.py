@@ -5,7 +5,9 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Connect to database
-engine = create_engine("sqlite:///tasks.db")
+import os
+DATABASE_URL = os.environ.get("DATABASE_URL")
+engine = create_engine(DATABASE_URL)
 
 # Database table structure
 class Task(SQLModel, table=True):
